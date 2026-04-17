@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Children's Poetry Store — childrenpoetry.store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Nunito:wght@400;600;700;800&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #FFF8F0;
+  --warm-white: #FFFDF9;
+  --ink: #2D2A32;
+  --ink-light: #5A5662;
+  --gold: #E8A838;
+  --gold-light: #F5D89A;
+  --rose: #E86B6B;
+  --rose-light: #FADADD;
+  --sky: #6BA8E8;
+  --sky-light: #D4E8FB;
+  --mint: #6BC9A8;
+  --mint-light: #D4F5E8;
+  --lavender: #9B7ED8;
+  --lavender-light: #E8DAF5;
+  --paper: #F5EDE0;
+  --shadow: rgba(45, 42, 50, 0.08);
+  --shadow-md: rgba(45, 42, 50, 0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ═══ FLOATING DECORATIVE ELEMENTS ═══ */
+.floating-stars {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.floating-stars span {
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0.12;
+  animation: drift 20s infinite ease-in-out;
+}
+@keyframes drift {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-30px) rotate(15deg); }
+  50% { transform: translateY(-10px) rotate(-10deg); }
+  75% { transform: translateY(-40px) rotate(5deg); }
+}
+
+/* ═══ HEADER / HERO ═══ */
+header {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(170deg, #FFF8F0 0%, #F5EDE0 40%, #E8DAF5 70%, #D4E8FB 100%);
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
+  opacity: 0.5;
+}
+header::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--sky-light) 0%, transparent 70%);
+  opacity: 0.4;
+}
+
+/* Top bar */
+.top-bar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.logo-icon {
+  font-size: 1.8rem;
+}
+nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+nav a {
+  text-decoration: none;
+  color: var(--ink-light);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.3s;
+  position: relative;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+nav a:hover { color: var(--ink); }
+nav a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--ink);
+  color: var(--cream) !important;
+  padding: 0.6rem 1.4rem;
+  border-radius: 100px;
+  font-size: 0.85rem !important;
+  transition: transform 0.3s, box-shadow 0.3s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-md);
+  color: var(--cream) !important;
+}
+
+/* Language Toggle */
+.lang-toggle {
+  display: flex;
+  gap: 0;
+  border: 2px solid var(--ink);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.lang-toggle button {
+  padding: 0.4rem 1rem;
+  border: none;
+  background: transparent;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: var(--ink);
+}
+.lang-toggle button.active {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+/* Hero content */
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 3rem 6rem;
+  position: relative;
+  z-index: 5;
+}
+.hero-inner {
+  max-width: 800px;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--rose);
+  margin-bottom: 1rem;
+  animation: fadeUp 0.8s ease-out 0.2s both;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s ease-out 0.4s both;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--lavender);
+}
+.hero p {
+  font-size: 1.2rem;
+  color: var(--ink-light);
+  max-width: 550px;
+  margin: 0 auto 2.5rem;
+  animation: fadeUp 0.8s ease-out 0.6s both;
+}
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s ease-out 0.8s both;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.2rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 1rem;
+  border: none;
+  border-radius: 100px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(232, 168, 56, 0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(232, 168, 56, 0.4);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.2rem;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 1rem;
+  border: 2px solid var(--ink);
+  border-radius: 100px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-secondary:hover {
+  background: var(--ink);
+  color: var(--cream);
+  transform: translateY(-3px);
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  animation: bounce 2s infinite;
+  font-size: 1.5rem;
+  opacity: 0.4;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* ═══ SECTIONS ═══ */
+section {
+  position: relative;
+  z-index: 1;
+}
+.section-pad {
+  padding: 6rem 3rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.section-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--rose);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--ink-light);
+  max-width: 600px;
+  margin-bottom: 3rem;
+}
+
+/* ═══ POET CATEGORIES ═══ */
+.category-section {
+  position: relative;
+}
+.category-section:nth-child(even) {
+  background: var(--paper);
+}
+.category-header {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+.category-emoji {
+  font-size: 3rem;
+  line-height: 1;
+}
+.category-header .section-subtitle {
+  margin-bottom: 0;
+}
+
+/* ═══ POET CARDS ═══ */
+.poets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+}
+.poet-card {
+  background: var(--warm-white);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: transform 0.4s, box-shadow 0.4s;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.poet-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px var(--shadow-md);
+}
+.poet-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+}
+.poet-card[data-accent="gold"]::before { background: var(--gold); }
+.poet-card[data-accent="rose"]::before { background: var(--rose); }
+.poet-card[data-accent="sky"]::before { background: var(--sky); }
+.poet-card[data-accent="mint"]::before { background: var(--mint); }
+.poet-card[data-accent="lavender"]::before { background: var(--lavender); }
+
+.poet-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.poet-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+.poet-card[data-accent="gold"] .poet-avatar { background: var(--gold-light); }
+.poet-card[data-accent="rose"] .poet-avatar { background: var(--rose-light); }
+.poet-card[data-accent="sky"] .poet-avatar { background: var(--sky-light); }
+.poet-card[data-accent="mint"] .poet-avatar { background: var(--mint-light); }
+.poet-card[data-accent="lavender"] .poet-avatar { background: var(--lavender-light); }
+
+.poet-years {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--ink-light);
+  background: var(--paper);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+}
+.poet-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 0.25rem;
+}
+.poet-subtitle {
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+}
+.poet-desc {
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+.poet-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.poet-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  background: var(--paper);
+  color: var(--ink-light);
+}
+.poet-card[data-accent="gold"] .poet-tag { background: var(--gold-light); color: #8B6914; }
+.poet-card[data-accent="rose"] .poet-tag { background: var(--rose-light); color: #9B3A3A; }
+.poet-card[data-accent="sky"] .poet-tag { background: var(--sky-light); color: #3A6A9B; }
+.poet-card[data-accent="mint"] .poet-tag { background: var(--mint-light); color: #3A8B6B; }
+.poet-card[data-accent="lavender"] .poet-tag { background: var(--lavender-light); color: #5A3D8B; }
+
+/* ═══ RUSSIAN POETS FEATURE ═══ */
+.russian-feature {
+  background: linear-gradient(160deg, #2D2A32 0%, #3D3848 50%, #4A3D5E 100%);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.russian-feature::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.russian-feature .section-label { color: var(--gold); }
+.russian-feature .section-subtitle { color: rgba(255,248,240,0.6); }
+.russian-feature .poet-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+.russian-feature .poet-card:hover {
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+.russian-feature .poet-name { color: var(--cream); }
+.russian-feature .poet-subtitle { color: rgba(255,248,240,0.5); }
+.russian-feature .poet-desc { color: rgba(255,248,240,0.7); }
+.russian-feature .poet-years { background: rgba(255,255,255,0.1); color: var(--gold-light); }
+.russian-feature .poet-tag { background: rgba(255,255,255,0.1); }
+.russian-feature .poet-card[data-accent="gold"] .poet-tag { background: rgba(232,168,56,0.2); color: var(--gold-light); }
+.russian-feature .poet-card[data-accent="rose"] .poet-tag { background: rgba(232,107,107,0.2); color: var(--rose-light); }
+.russian-feature .poet-card[data-accent="sky"] .poet-tag { background: rgba(107,168,232,0.2); color: var(--sky-light); }
+.russian-feature .poet-card[data-accent="mint"] .poet-tag { background: rgba(107,201,168,0.2); color: var(--mint-light); }
+.russian-feature .poet-card[data-accent="lavender"] .poet-tag { background: rgba(155,126,216,0.2); color: var(--lavender-light); }
+
+/* ═══ FEATURED POEM BANNER ═══ */
+.poem-banner {
+  background: var(--warm-white);
+  border: 2px dashed var(--gold);
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  margin: 3rem 0;
+  position: relative;
+}
+.poem-banner::before {
+  content: '✦';
+  position: absolute;
+  top: -14px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--cream);
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  color: var(--gold);
+}
+.poem-banner blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  color: var(--ink);
+}
+.poem-banner cite {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--ink-light);
+  font-style: normal;
+}
+
+/* ═══ SHOP / NEWSLETTER ═══ */
+.newsletter-section {
+  background: linear-gradient(160deg, var(--sky-light) 0%, var(--lavender-light) 50%, var(--rose-light) 100%);
+}
+.newsletter-box {
+  background: var(--warm-white);
+  border-radius: 24px;
+  padding: 3.5rem;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px var(--shadow);
+}
+.newsletter-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+.newsletter-box p {
+  color: var(--ink-light);
+  margin-bottom: 2rem;
+}
+.newsletter-form {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 460px;
+  margin: 0 auto;
+}
+.newsletter-form input {
+  flex: 1;
+  padding: 0.9rem 1.4rem;
+  border: 2px solid var(--paper);
+  border-radius: 100px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s;
+  background: var(--cream);
+}
+.newsletter-form input:focus {
+  border-color: var(--gold);
+}
+.newsletter-form button {
+  padding: 0.9rem 1.8rem;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: 100px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.newsletter-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232,168,56,0.3);
+}
+
+/* ═══ FOOTER ═══ */
+footer {
+  background: var(--ink);
+  color: rgba(255,248,240,0.5);
+  padding: 4rem 3rem 2rem;
+}
+.footer-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.footer-brand .logo {
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+.footer-brand p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 300px;
+}
+footer h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--cream);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+footer ul {
+  list-style: none;
+}
+footer ul li { margin-bottom: 0.5rem; }
+footer ul a {
+  color: rgba(255,248,240,0.5);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+footer ul a:hover { color: var(--gold); }
+.footer-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══ MOBILE MENU ═══ */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .top-bar { padding: 1rem 1.5rem; }
+  .section-pad { padding: 4rem 1.5rem; }
+  .poets-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  nav { display: none; }
+  .mobile-toggle { display: block; }
+  .hero h1 { font-size: 2.5rem; }
+  .newsletter-form { flex-direction: column; }
+  .poem-banner { padding: 2rem 1.5rem; }
+  .poem-banner blockquote { font-size: 1.2rem; }
+}
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero { padding: 2rem 1.5rem 4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Floating decorative elements -->
+<div class="floating-stars">
+  <span style="top:8%;left:5%;animation-delay:0s">✦</span>
+  <span style="top:15%;left:85%;animation-delay:3s">☆</span>
+  <span style="top:30%;left:15%;animation-delay:5s">✧</span>
+  <span style="top:45%;left:90%;animation-delay:2s">⋆</span>
+  <span style="top:60%;left:8%;animation-delay:7s">✦</span>
+  <span style="top:75%;left:92%;animation-delay:4s">☆</span>
+  <span style="top:88%;left:20%;animation-delay:6s">✧</span>
+  <span style="top:20%;left:50%;animation-delay:8s">⋆</span>
+</div>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+  <div class="top-bar">
+    <a href="#" class="logo">
+      <span class="logo-icon">📖</span>
+      childrenpoetry.store
+    </a>
+    <nav>
+      <a href="#english">English Poets</a>
+      <a href="#russian">Russian Poets</a>
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <div class="lang-toggle">
+        <button class="active" onclick="this.classList.add('active');this.nextElementSibling.classList.remove('active')">EN</button>
+        <button onclick="this.classList.add('active');this.previousElementSibling.classList.remove('active')">RU</button>
+      </div>
+      <a href="#newsletter" class="nav-cta">Subscribe</a>
+    </nav>
+    <button class="mobile-toggle" onclick="this.nextElementSibling?.classList.toggle('open')" aria-label="Menu">☰</button>
+  </div>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">~ Where wonder lives in every verse ~</div>
+      <h1>A Treasury of <em>Children's</em> Poetry</h1>
+      <p>Discover the greatest poets who have enchanted young readers for centuries — from the whimsy of Lewis Carroll to the warmth of Agnia Barto.</p>
+      <div class="hero-buttons">
+        <a href="#english" class="btn-primary">✦ Explore Poets</a>
+        <a href="#shop" class="btn-secondary">Visit Shop →</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">↓</div>
+</header>
+
+<!-- ═══════════ NONSENSE & WHIMSY ═══════════ -->
+<section id="english" class="category-section">
+  <div class="section-pad">
+    <div class="category-header reveal">
+      <span class="category-emoji">🎩</span>
+      <div>
+        <div class="section-label">Category I</div>
+        <h2 class="section-title">The Masters of Nonsense & Whimsy</h2>
+        <p class="section-subtitle">These poets defined the genre with wordplay, invented creatures, and surreal logic.</p>
+      </div>
+    </div>
+    <div class="poets-grid">
+      <div class="poet-card reveal" data-accent="lavender">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🐇</div>
+          <span class="poet-years">1832–1898</span>
+        </div>
+        <h3 class="poet-name">Lewis Carroll</h3>
+        <div class="poet-subtitle">Master of Nonsense Verse</div>
+        <p class="poet-desc">Best known for <em>Alice's Adventures in Wonderland</em>, he penned iconic nonsense poems like "Jabberwocky" and "The Walrus and the Carpenter."</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Nonsense</span>
+          <span class="poet-tag">Wordplay</span>
+          <span class="poet-tag">Victorian</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="mint">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🦉</div>
+          <span class="poet-years">1812–1888</span>
+        </div>
+        <h3 class="poet-name">Edward Lear</h3>
+        <div class="poet-subtitle">Father of Limericks</div>
+        <p class="poet-desc">Often called the "Father of Limericks," his most famous work is "The Owl and the Pussy-cat," a beloved adventure in verse.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Limericks</span>
+          <span class="poet-tag">Whimsy</span>
+          <span class="poet-tag">Illustration</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="rose">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🎩</div>
+          <span class="poet-years">1904–1991</span>
+        </div>
+        <h3 class="poet-name">Dr. Seuss</h3>
+        <div class="poet-subtitle">Theodor Seuss Geisel</div>
+        <p class="poet-desc">Revolutionized children's literacy with trisyllabic meter and imaginative characters in classics like <em>The Cat in the Hat</em>.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Rhyme</span>
+          <span class="poet-tag">Illustration</span>
+          <span class="poet-tag">Literacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GOLDEN AGE ═══════════ -->
+<section class="category-section">
+  <div class="section-pad">
+    <div class="category-header reveal">
+      <span class="category-emoji">🌿</span>
+      <div>
+        <div class="section-label">Category II</div>
+        <h2 class="section-title">The "Golden Age" & Narrative Poets</h2>
+        <p class="section-subtitle">Capturing the essence of childhood through evocative imagery and storytelling.</p>
+      </div>
+    </div>
+    <div class="poets-grid">
+      <div class="poet-card reveal" data-accent="sky">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🏴‍☠️</div>
+          <span class="poet-years">1850–1894</span>
+        </div>
+        <h3 class="poet-name">Robert Louis Stevenson</h3>
+        <div class="poet-subtitle">Poet of Childhood Wonder</div>
+        <p class="poet-desc">His collection <em>A Child's Garden of Verses</em> includes staples like "My Shadow" and "The Land of Counterpane."</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Adventure</span>
+          <span class="poet-tag">Imagination</span>
+          <span class="poet-tag">Victorian</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="gold">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🧸</div>
+          <span class="poet-years">1882–1956</span>
+        </div>
+        <h3 class="poet-name">A. A. Milne</h3>
+        <div class="poet-subtitle">Creator of Winnie-the-Pooh</div>
+        <p class="poet-desc">Beyond Pooh, he wrote beloved poetry collections for children, such as <em>When We Were Very Young</em>.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Gentle Verse</span>
+          <span class="poet-tag">Childhood</span>
+          <span class="poet-tag">Warmth</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="rose">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🌹</div>
+          <span class="poet-years">1830–1894</span>
+        </div>
+        <h3 class="poet-name">Christina Rossetti</h3>
+        <div class="poet-subtitle">Victorian Lyricist</div>
+        <p class="poet-desc">While a serious Victorian poet, her collection <em>Sing-Song: A Nursery Rhyme Book</em> contains delicate, rhythmic verses for children.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Lyrical</span>
+          <span class="poet-tag">Nursery Rhyme</span>
+          <span class="poet-tag">Victorian</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FEATURED POEM ═══════════ -->
+<section>
+  <div class="section-pad">
+    <div class="poem-banner reveal">
+      <blockquote>
+        "The time has come," the Walrus said,<br>
+        "To talk of many things…"
+      </blockquote>
+      <cite>— Lewis Carroll, "The Walrus and the Carpenter"</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTEMPORARY ═══════════ -->
+<section class="category-section">
+  <div class="section-pad">
+    <div class="category-header reveal">
+      <span class="category-emoji">😂</span>
+      <div>
+        <div class="section-label">Category III</div>
+        <h2 class="section-title">Contemporary & Humorous Poets</h2>
+        <p class="section-subtitle">Making poetry accessible and hilarious for today's young readers.</p>
+      </div>
+    </div>
+    <div class="poets-grid">
+      <div class="poet-card reveal" data-accent="gold">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🌳</div>
+          <span class="poet-years">1930–1999</span>
+        </div>
+        <h3 class="poet-name">Shel Silverstein</h3>
+        <div class="poet-subtitle">Master of Subversive Humor</div>
+        <p class="poet-desc">A household name known for his subversive humor in <em>Where the Sidewalk Ends</em> and <em>A Light in the Attic</em>.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Humor</span>
+          <span class="poet-tag">Illustration</span>
+          <span class="poet-tag">Beloved</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="sky">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🎪</div>
+          <span class="poet-years">1940–</span>
+        </div>
+        <h3 class="poet-name">Jack Prelutsky</h3>
+        <div class="poet-subtitle">First U.S. Children's Poet Laureate</div>
+        <p class="poet-desc">Famous for high-energy, silly works like <em>The New Kid on the Block</em>, he makes poetry thrilling for kids.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Energy</span>
+          <span class="poet-tag">Silly</span>
+          <span class="poet-tag">Laureate</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="mint">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🍫</div>
+          <span class="poet-years">1916–1990</span>
+        </div>
+        <h3 class="poet-name">Roald Dahl</h3>
+        <div class="poet-subtitle">Dark Wit & Twisted Tales</div>
+        <p class="poet-desc">Known for his dark wit, his <em>Revolting Rhymes</em> provides twisted comic retellings of traditional fairy tales.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Dark Humor</span>
+          <span class="poet-tag">Fairy Tales</span>
+          <span class="poet-tag">Subversive</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="lavender">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🐻</div>
+          <span class="poet-years">1946–</span>
+        </div>
+        <h3 class="poet-name">Michael Rosen</h3>
+        <div class="poet-subtitle">British Children's Laureate</div>
+        <p class="poet-desc">Widely loved for his performance-oriented poetry and the classic <em>We're Going on a Bear Hunt</em>.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Performance</span>
+          <span class="poet-tag">British</span>
+          <span class="poet-tag">Classic</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MODERN VOICES ═══════════ -->
+<section class="category-section">
+  <div class="section-pad">
+    <div class="category-header reveal">
+      <span class="category-emoji">✨</span>
+      <div>
+        <div class="section-label">Category IV</div>
+        <h2 class="section-title">Notable Modern Voices</h2>
+        <p class="section-subtitle">Today's poets bringing fresh perspectives and diverse stories to young readers.</p>
+      </div>
+    </div>
+    <div class="poets-grid">
+      <div class="poet-card reveal" data-accent="mint">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🌍</div>
+          <span class="poet-years">Contemporary</span>
+        </div>
+        <h3 class="poet-name">Naomi Shihab Nye</h3>
+        <div class="poet-subtitle">Young People's Poet Laureate</div>
+        <p class="poet-desc">A former Young People's Poet Laureate whose work often focuses on empathy and everyday wonders.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Empathy</span>
+          <span class="poet-tag">Multicultural</span>
+          <span class="poet-tag">Laureate</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="rose">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🌻</div>
+          <span class="poet-years">Contemporary</span>
+        </div>
+        <h3 class="poet-name">Nikki Giovanni</h3>
+        <div class="poet-subtitle">Voice of Family & Heritage</div>
+        <p class="poet-desc">An influential poet who has written several acclaimed collections for children, focusing on themes of family and heritage.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Heritage</span>
+          <span class="poet-tag">Family</span>
+          <span class="poet-tag">Influential</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="sky">
+        <div class="poet-card-top">
+          <div class="poet-avatar">📸</div>
+          <span class="poet-years">Contemporary</span>
+        </div>
+        <h3 class="poet-name">Charles R. Smith Jr.</h3>
+        <div class="poet-subtitle">2025 NCTE Award Recipient</div>
+        <p class="poet-desc">Recipient of the 2025 NCTE Award for Excellence in Poetry for Children, recognized for dynamic combinations of poetry and photography.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Photography</span>
+          <span class="poet-tag">Dynamic</span>
+          <span class="poet-tag">Award-Winner</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ RUSSIAN POETS ═══════════ -->
+<section id="russian" class="category-section russian-feature">
+  <div class="section-pad">
+    <div class="category-header reveal">
+      <span class="category-emoji">🇷🇺</span>
+      <div>
+        <div class="section-label">Русская поэзия</div>
+        <h2 class="section-title" style="color:var(--cream)">Russian Children's Poets</h2>
+        <p class="section-subtitle">The giants of Russian-language poetry for children — beloved across generations.</p>
+      </div>
+    </div>
+    <div class="poets-grid">
+      <div class="poet-card reveal" data-accent="gold">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🐊</div>
+          <span class="poet-years">1882–1969</span>
+        </div>
+        <h3 class="poet-name">Korney Chukovsky</h3>
+        <div class="poet-subtitle">Корней Чуковский</div>
+        <p class="poet-desc">The founding father of Russian children's literature. His rhythmic, fantastical poems like <em>Moydodyr</em> and <em>The Crocodile</em> remain cherished classics.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Classic</span>
+          <span class="poet-tag">Fantastical</span>
+          <span class="poet-tag">Pioneer</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="rose">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🧸</div>
+          <span class="poet-years">1906–1981</span>
+        </div>
+        <h3 class="poet-name">Agnia Barto</h3>
+        <div class="poet-subtitle">Агния Барто</div>
+        <p class="poet-desc">Beloved for her gentle, memorable quatrains about childhood. Every Russian-speaking child knows her "Toys" cycle — <em>Mishka</em>, <em>Bunny</em>, and <em>Ball</em>.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Gentle</span>
+          <span class="poet-tag">Childhood</span>
+          <span class="poet-tag">Iconic</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="sky">
+        <div class="poet-card-top">
+          <div class="poet-avatar">📬</div>
+          <span class="poet-years">1887–1964</span>
+        </div>
+        <h3 class="poet-name">Samuil Marshak</h3>
+        <div class="poet-subtitle">Самуил Маршак</div>
+        <p class="poet-desc">A master translator and original poet. His playful verses, riddles, and translations of English nursery rhymes bridged cultures for young readers.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Translator</span>
+          <span class="poet-tag">Riddles</span>
+          <span class="poet-tag">Playful</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="lavender">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🎭</div>
+          <span class="poet-years">1913–2009</span>
+        </div>
+        <h3 class="poet-name">Sergei Mikhalkov</h3>
+        <div class="poet-subtitle">Сергей Михалков</div>
+        <p class="poet-desc">Author of the beloved <em>Uncle Styopa</em> series and lyricist of the Russian national anthem. His children's verse is witty, warm, and wonderfully theatrical.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Theatrical</span>
+          <span class="poet-tag">Uncle Styopa</span>
+          <span class="poet-tag">Witty</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="mint">
+        <div class="poet-card-top">
+          <div class="poet-avatar">💡</div>
+          <span class="poet-years">1918–2000</span>
+        </div>
+        <h3 class="poet-name">Boris Zakhoder</h3>
+        <div class="poet-subtitle">Борис Заходер</div>
+        <p class="poet-desc">The beloved translator who brought Winnie-the-Pooh to Russian children, and an original poet known for whimsical animal verses.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Winnie-the-Pooh</span>
+          <span class="poet-tag">Animals</span>
+          <span class="poet-tag">Translator</span>
+        </div>
+      </div>
+      <div class="poet-card reveal" data-accent="gold">
+        <div class="poet-card-top">
+          <div class="poet-avatar">🌙</div>
+          <span class="poet-years">1930–</span>
+        </div>
+        <h3 class="poet-name">Genrikh Sapgir</h3>
+        <div class="poet-subtitle">Генрих Сапгир</div>
+        <p class="poet-desc">An avant-garde poet who brought surreal, experimental playfulness to Russian children's verse with inventive wordplay and absurdist humor.</p>
+        <div class="poet-tags">
+          <span class="poet-tag">Avant-Garde</span>
+          <span class="poet-tag">Surreal</span>
+          <span class="poet-tag">Wordplay</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ NEWSLETTER ═══════════ -->
+<section id="newsletter" class="newsletter-section">
+  <div class="section-pad">
+    <div class="newsletter-box reveal">
+      <div class="section-label">Stay Inspired</div>
+      <h3>A Poem a Week ✦</h3>
+      <p>Get a curated children's poem in English or Russian delivered to your inbox every Monday morning.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="your@email.com" aria-label="Email address">
+        <button type="button">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <span class="logo-icon">📖</span>
+        childrenpoetry.store
+      </a>
+      <p>A curated collection celebrating the world's greatest children's poets in English and Russian. Bringing the joy of verse to young readers everywhere.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#english">English Poets</a></li>
+        <li><a href="#russian">Russian Poets</a></li>
+        <li><a href="#shop">Book Shop</a></li>
+        <li><a href="#">Poem of the Day</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Teaching Guides</a></li>
+        <li><a href="#">Parents' Corner</a></li>
+        <li><a href="#">Poetry Workshops</a></li>
+        <li><a href="#">Audio Readings</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>About</h4>
+      <ul>
+        <li><a href="#">Our Mission</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 childrenpoetry.store — Made with ♡ for young readers</span>
+    <span>EN / RU</span>
+  </div>
+</footer>
+
+<!-- ═══════════ SCROLL REVEAL SCRIPT ═══════════ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+</script>
+
+</body>
+</html>
