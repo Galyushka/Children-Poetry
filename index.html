@@ -9,23 +9,23 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --cream: #FFF8F0;
-  --warm-white: #FFFDF9;
-  --ink: #2D2A32;
-  --ink-light: #5A5662;
-  --gold: #E8A838;
-  --gold-light: #F5D89A;
-  --rose: #E86B6B;
-  --rose-light: #FADADD;
-  --sky: #6BA8E8;
-  --sky-light: #D4E8FB;
-  --mint: #6BC9A8;
-  --mint-light: #D4F5E8;
-  --lavender: #9B7ED8;
-  --lavender-light: #E8DAF5;
-  --paper: #F5EDE0;
-  --shadow: rgba(45, 42, 50, 0.08);
-  --shadow-md: rgba(45, 42, 50, 0.12);
+  --cream: #FFF700;
+  --warm-white: #FFFFFF;
+  --ink: #1A1A2E;
+  --ink-light: #444466;
+  --gold: #FF6B00;
+  --gold-light: #FFE0C2;
+  --rose: #FF2D78;
+  --rose-light: #FFD6E7;
+  --sky: #00AAFF;
+  --sky-light: #CCF0FF;
+  --mint: #00CC66;
+  --mint-light: #CCFFE6;
+  --lavender: #AA00FF;
+  --lavender-light: #EDD6FF;
+  --paper: #FFF9CC;
+  --shadow: rgba(26, 26, 46, 0.10);
+  --shadow-md: rgba(26, 26, 46, 0.18);
 }
 
 html { scroll-behavior: smooth; }
@@ -49,7 +49,7 @@ body {
 .floating-stars span {
   position: absolute;
   font-size: 1.2rem;
-  opacity: 0.12;
+  opacity: 0.25;
   animation: drift 20s infinite ease-in-out;
 }
 @keyframes drift {
@@ -65,7 +65,7 @@ header {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(170deg, #FFF8F0 0%, #F5EDE0 40%, #E8DAF5 70%, #D4E8FB 100%);
+  background: linear-gradient(170deg, #FFF700 0%, #FFEE00 40%, #FFD600 70%, #FFC800 100%);
   overflow: hidden;
 }
 header::before {
@@ -74,8 +74,8 @@ header::before {
   top: -120px; right: -120px;
   width: 500px; height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
-  opacity: 0.5;
+  background: radial-gradient(circle, #FF2D78 0%, transparent 70%);
+  opacity: 0.18;
 }
 header::after {
   content: '';
@@ -83,8 +83,8 @@ header::after {
   bottom: -80px; left: -80px;
   width: 400px; height: 400px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--sky-light) 0%, transparent 70%);
-  opacity: 0.4;
+  background: radial-gradient(circle, #00AAFF 0%, transparent 70%);
+  opacity: 0.18;
 }
 
 /* Top bar */
@@ -316,6 +316,12 @@ section {
 .category-section:nth-child(even) {
   background: var(--paper);
 }
+/* Individual section colours */
+#english { background: #FFD6E7; }         /* soft pink — Nonsense */
+.cat-golden { background: #CCF0FF; }       /* sky blue — Golden Age */
+.cat-poem-banner { background: #FFF700; }  /* yellow — poem quote */
+.cat-contemporary { background: #CCFFE6; } /* mint green — Contemporary */
+.cat-modern { background: #EDD6FF; }       /* lavender — Modern Voices */
 .category-header {
   display: flex;
   align-items: flex-end;
@@ -425,16 +431,16 @@ section {
   background: var(--paper);
   color: var(--ink-light);
 }
-.poet-card[data-accent="gold"] .poet-tag { background: var(--gold-light); color: #8B6914; }
-.poet-card[data-accent="rose"] .poet-tag { background: var(--rose-light); color: #9B3A3A; }
-.poet-card[data-accent="sky"] .poet-tag { background: var(--sky-light); color: #3A6A9B; }
-.poet-card[data-accent="mint"] .poet-tag { background: var(--mint-light); color: #3A8B6B; }
-.poet-card[data-accent="lavender"] .poet-tag { background: var(--lavender-light); color: #5A3D8B; }
+.poet-card[data-accent="gold"] .poet-tag { background: var(--gold-light); color: var(--gold); }
+.poet-card[data-accent="rose"] .poet-tag { background: var(--rose-light); color: var(--rose); }
+.poet-card[data-accent="sky"] .poet-tag { background: var(--sky-light); color: var(--sky); }
+.poet-card[data-accent="mint"] .poet-tag { background: var(--mint-light); color: var(--mint); }
+.poet-card[data-accent="lavender"] .poet-tag { background: var(--lavender-light); color: var(--lavender); }
 
 /* ═══ RUSSIAN POETS FEATURE ═══ */
 .russian-feature {
-  background: linear-gradient(160deg, #2D2A32 0%, #3D3848 50%, #4A3D5E 100%);
-  color: var(--cream);
+  background: linear-gradient(160deg, #E8002D 0%, #CC0033 50%, #A80028 100%);
+  color: #FFFFFF;
   position: relative;
   overflow: hidden;
 }
@@ -444,31 +450,31 @@ section {
   top: 0; left: 0; width: 100%; height: 100%;
   background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
-.russian-feature .section-label { color: var(--gold); }
-.russian-feature .section-subtitle { color: rgba(255,248,240,0.6); }
+.russian-feature .section-label { color: #FFF700; }
+.russian-feature .section-subtitle { color: rgba(255,255,255,0.85); }
 .russian-feature .poet-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.92);
+  border: none;
+  backdrop-filter: none;
 }
 .russian-feature .poet-card:hover {
-  background: rgba(255,255,255,0.1);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  background: #FFFFFF;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
 }
-.russian-feature .poet-name { color: var(--cream); }
-.russian-feature .poet-subtitle { color: rgba(255,248,240,0.5); }
-.russian-feature .poet-desc { color: rgba(255,248,240,0.7); }
-.russian-feature .poet-years { background: rgba(255,255,255,0.1); color: var(--gold-light); }
-.russian-feature .poet-tag { background: rgba(255,255,255,0.1); }
-.russian-feature .poet-card[data-accent="gold"] .poet-tag { background: rgba(232,168,56,0.2); color: var(--gold-light); }
-.russian-feature .poet-card[data-accent="rose"] .poet-tag { background: rgba(232,107,107,0.2); color: var(--rose-light); }
-.russian-feature .poet-card[data-accent="sky"] .poet-tag { background: rgba(107,168,232,0.2); color: var(--sky-light); }
-.russian-feature .poet-card[data-accent="mint"] .poet-tag { background: rgba(107,201,168,0.2); color: var(--mint-light); }
-.russian-feature .poet-card[data-accent="lavender"] .poet-tag { background: rgba(155,126,216,0.2); color: var(--lavender-light); }
+.russian-feature .poet-name { color: #1A1A2E; }
+.russian-feature .poet-subtitle { color: #666688; }
+.russian-feature .poet-desc { color: #333355; }
+.russian-feature .poet-years { background: #FFE0C2; color: #CC3300; }
+.russian-feature .poet-tag { background: #F5F5F5; color: #444466; }
+.russian-feature .poet-card[data-accent="gold"] .poet-tag { background: #FFE0C2; color: #CC4400; }
+.russian-feature .poet-card[data-accent="rose"] .poet-tag { background: #FFD6E7; color: #CC0055; }
+.russian-feature .poet-card[data-accent="sky"] .poet-tag { background: #CCF0FF; color: #0066BB; }
+.russian-feature .poet-card[data-accent="mint"] .poet-tag { background: #CCFFE6; color: #007733; }
+.russian-feature .poet-card[data-accent="lavender"] .poet-tag { background: #EDD6FF; color: #7700CC; }
 
 /* ═══ FEATURED POEM BANNER ═══ */
 .poem-banner {
-  background: var(--warm-white);
+  background: var(--paper);
   border: 2px dashed var(--gold);
   border-radius: 24px;
   padding: 3rem;
@@ -504,7 +510,7 @@ section {
 
 /* ═══ SHOP / NEWSLETTER ═══ */
 .newsletter-section {
-  background: linear-gradient(160deg, var(--sky-light) 0%, var(--lavender-light) 50%, var(--rose-light) 100%);
+  background: linear-gradient(160deg, #FF2D78 0%, #FF6BAA 50%, #FF2D78 100%);
 }
 .newsletter-box {
   background: var(--warm-white);
@@ -565,8 +571,8 @@ section {
 
 /* ═══ FOOTER ═══ */
 footer {
-  background: var(--ink);
-  color: rgba(255,248,240,0.5);
+  background: #1A1A2E;
+  color: rgba(255,255,255,0.55);
   padding: 4rem 3rem 2rem;
 }
 .footer-grid {
@@ -768,10 +774,7 @@ footer ul a:hover { color: var(--gold); }
 </section>
 
 <!-- ═══════════ GOLDEN AGE ═══════════ -->
-<section class="category-section">
-  <div class="section-pad">
-    <div class="category-header reveal">
-      <span class="category-emoji">🌿</span>
+<section class="category-section cat-golden">
       <div>
         <div class="section-label">Category II</div>
         <h2 class="section-title">The "Golden Age" & Narrative Poets</h2>
@@ -826,7 +829,7 @@ footer ul a:hover { color: var(--gold); }
 </section>
 
 <!-- ═══════════ FEATURED POEM ═══════════ -->
-<section>
+<section class="cat-poem-banner">
   <div class="section-pad">
     <div class="poem-banner reveal">
       <blockquote>
@@ -839,7 +842,7 @@ footer ul a:hover { color: var(--gold); }
 </section>
 
 <!-- ═══════════ CONTEMPORARY ═══════════ -->
-<section class="category-section">
+<section class="category-section cat-contemporary">
   <div class="section-pad">
     <div class="category-header reveal">
       <span class="category-emoji">😂</span>
@@ -911,7 +914,7 @@ footer ul a:hover { color: var(--gold); }
 </section>
 
 <!-- ═══════════ MODERN VOICES ═══════════ -->
-<section class="category-section">
+<section class="category-section cat-modern">
   <div class="section-pad">
     <div class="category-header reveal">
       <span class="category-emoji">✨</span>
